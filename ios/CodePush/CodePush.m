@@ -60,6 +60,8 @@ static NSString *const BinaryBundleDateKey = @"binaryDate";
 static NSString *const PackageHashKey = @"packageHash";
 static NSString *const PackageIsPendingKey = @"isPending";
 
+static NSString *const DeploymentKeyInLocalStorage = @"DeploymentKeyInLocalStorage";
+
 #pragma mark - Static variables
 
 static BOOL isRunningBinaryVersion = NO;
@@ -931,6 +933,17 @@ RCT_EXPORT_METHOD(saveStatusReportForRetry:(NSDictionary *)statusReport)
 
     [self dispatchDownloadProgressEvent];
     _didUpdateProgress = NO;
+}
+
+
+RCT_EXPORT_METHOD(setDeploymentKey:(NSString *)deploymentKey)
+{
+    NSLog(@"setDeploymentKey:%@",deploymentKey);
+    [CodePush setDeploymentKey:deploymentKey];
+    //写入App缓存
+    NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+    [preferences setValue:deploymentKey forKey:DeploymentKeyInLocalStorage];
+    
 }
 
 @end

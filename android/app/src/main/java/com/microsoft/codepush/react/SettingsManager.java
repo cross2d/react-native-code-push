@@ -15,6 +15,15 @@ public class SettingsManager {
         mSettings = applicationContext.getSharedPreferences(CodePushConstants.CODE_PUSH_PREFERENCES, 0);
     }
 
+    public String getString(String key){
+        String result = mSettings.getString(key, null);
+        return result;
+    }
+
+    public void setString(String key,String value){
+        mSettings.edit().putString(key,value).commit();
+    }
+
     public JSONArray getFailedUpdates() {
         String failedUpdatesString = mSettings.getString(CodePushConstants.FAILED_UPDATES_KEY, null);
         if (failedUpdatesString == null) {

@@ -13,6 +13,9 @@ static NSString * const ClientUniqueIDConfigKey = @"clientUniqueId";
 static NSString * const DeploymentKeyConfigKey = @"deploymentKey";
 static NSString * const ServerURLConfigKey = @"serverUrl";
 
+
+static NSString *const DeploymentKeyInLocalStorage = @"DeploymentKeyInLocalStorage";
+
 + (instancetype)current
 {
     return _currentConfig;
@@ -33,6 +36,14 @@ static NSString * const ServerURLConfigKey = @"serverUrl";
     NSString *appVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     NSString *buildVersion = [infoDictionary objectForKey:(NSString *)kCFBundleVersionKey];
     NSString *deploymentKey = [infoDictionary objectForKey:@"CodePushDeploymentKey"];
+    //尝试从LocalStorage中读取deploymentKey
+    NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+    NSString* localDeploymentKey = [preferences valueForKey:DeploymentKeyInLocalStorage];
+    if(localDeploymentKey){
+        deploymentKey=localDeploymentKey;
+    }
+    
+    
     NSString *serverURL = [infoDictionary objectForKey:@"CodePushServerURL"];
 
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];

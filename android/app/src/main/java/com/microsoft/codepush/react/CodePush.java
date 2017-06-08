@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CodePush implements ReactPackage {
-
+    public static final String sDeploymentKeyInLocalStorage = "DeploymentKeyInLocalStorage";
     private static boolean sIsRunningBinaryVersion = false;
     private static boolean sNeedToReportRollback = false;
     private static boolean sTestConfigurationFlag = false;
@@ -56,6 +56,15 @@ public class CodePush implements ReactPackage {
         mDeploymentKey = deploymentKey;
         mIsDebugMode = isDebugMode;
         mSettingsManager = new SettingsManager(mContext);
+        //尝试从App缓存中读取DeploymentKey
+        String localDeploymentKey = mSettingsManager.getString(sDeploymentKeyInLocalStorage);
+        if(localDeploymentKey!=null){
+            mDeploymentKey = localDeploymentKey;
+            CodePushUtils.log("mDeploymentKey-localstorage->"+mDeploymentKey);
+        }else{
+            mDeploymentKey = deploymentKey;
+            CodePushUtils.log("mDeploymentKey-Build-Config->"+mDeploymentKey);
+        }
 
         if (sAppVersion == null) {
             try {
@@ -127,6 +136,11 @@ public class CodePush implements ReactPackage {
     public String getDeploymentKey() {
         return mDeploymentKey;
     }
+
+    public void setDeploymentKey(String deploymentKey) {
+        mDeploymentKey=deploymentKey;
+    }
+
 
     public static String getJSBundleFile() {
         return CodePush.getJSBundleFile(CodePushConstants.DEFAULT_JS_BUNDLE_NAME);

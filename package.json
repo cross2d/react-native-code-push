@@ -1,20 +1,20 @@
 {
   "name": "@cross2d/react-native-code-push",
-  "version":"2.1.0-beta",
+  "version":"1.0.0",
   "description": "React Native plugin for the CodePush service",
   "main": "CodePush.js",
   "typings": "typings/react-native-code-push.d.ts",
-  "homepage": "https://microsoft.github.io/code-push",
+  "homepage": "https://github.com/cross2d/react-native-code-push#readme",
   "keywords": [
     "react-native",
     "code",
     "push"
   ],
-  "author": "Microsoft Corporation",
+  "author": "Colin3dmax",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Microsoft/react-native-code-push"
+    "url": "https://github.com/cross2d/react-native-code-push"
   },
   "dependencies": {
     "code-push": "1.11.2-beta",
@@ -55,7 +55,7 @@
       }
     ],
     "commands": {
-      "postlink": "node node_modules/react-native-code-push/scripts/postlink/run"
+      "postlink": "node node_modules/@cross2d/react-native-code-push/scripts/postlink/run"
     }
   }
 }

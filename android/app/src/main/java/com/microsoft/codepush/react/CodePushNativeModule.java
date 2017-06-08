@@ -536,4 +536,14 @@ public class CodePushNativeModule extends ReactContextBaseJavaModule {
             }
         }
     }
+
+
+    @ReactMethod
+    public void setDeploymentKey(String deploymentKey) {
+        mCodePush.setDeploymentKey(deploymentKey);
+        //写入App缓存
+        mSettingsManager.setString(CodePush.sDeploymentKeyInLocalStorage,deploymentKey);
+    }
+
+
 }
