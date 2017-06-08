@@ -503,6 +503,14 @@ function codePushify(options = {}) {
   }
 }
 
+
+function setDeploymentKey(deploymentKey){
+    if(NativeCodePush.setDeploymentKey){
+        NativeCodePush.setDeploymentKey(deploymentKey);
+    }
+
+}
+
 // If the "NativeCodePush" variable isn't defined, then
 // the app didn't properly install the native module,
 // and therefore, it doesn't make sense initializing
@@ -511,6 +519,7 @@ if (NativeCodePush) {
   CodePush = codePushify;
   Object.assign(CodePush, {
     AcquisitionSdk: Sdk,
+    setDeploymentKey,
     checkForUpdate,
     getConfiguration,
     getCurrentPackage,
