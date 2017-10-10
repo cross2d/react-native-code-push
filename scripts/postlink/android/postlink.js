@@ -79,7 +79,7 @@ https://github.com/microsoft/react-native-code-push#plugin-installation-android-
 // 2. Add the codepush.gradle build task definitions
 var buildGradleContents = fs.readFileSync(buildGradlePath, "utf8");
 var reactGradleLink = buildGradleContents.match(/\napply from: ["'].*?react\.gradle["']/)[0];
-var codePushGradleLink = `apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"`;
+var codePushGradleLink = `apply from: "../../node_modules/@cross2d/react-native-code-push/android/codepush.gradle"`;
 if (~buildGradleContents.indexOf(codePushGradleLink)) {
     console.log(`"codepush.gradle" is already linked in the build definition`);
 } else {
