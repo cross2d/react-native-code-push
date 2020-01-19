@@ -290,7 +290,7 @@ public class CodePush implements ReactPackage {
         }
         return mReactInstanceHolder.getReactInstanceManager();
     }
-    
+
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactApplicationContext) {
         CodePushNativeModule codePushModule = new CodePushNativeModule(reactApplicationContext, this, mUpdateManager, mTelemetryManager, mSettingsManager);
@@ -302,7 +302,6 @@ public class CodePush implements ReactPackage {
         return nativeModules;
     }
 
-    @Override
     public List<Class<? extends JavaScriptModule>> createJSModules() {
         return new ArrayList<>();
     }
